@@ -1,0 +1,286 @@
+// @BMD(Bootstrap Mobile Design) v.1.2.0
+
+// ----------------------------------
+// @Colors
+
+// ----------------------------------
+// @ Modules
+@mixin shadow {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+@mixin shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+@mixin shadow-lg {
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+// ----------------------------------
+
+#bmd_init {
+  .bmd_view {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border: 0 !important;
+    border-radius: 0 !important;
+    transition: 0.3s all !important;
+    z-index: 1080;
+
+    .bmd_view-header {
+      border: 0.1rem solid #efefef !important;
+      @include shadow-sm();
+      padding: 0.9rem 0.5rem 0.9rem 0.5rem;
+      border-radius: 0 !important;
+      z-index: 1050;
+
+      // color theming
+
+      // @blue
+      &.header-blue {
+        background: linear-gradient(
+          to right,
+          #024c71 15%,
+          #035b86e5 50%,
+          #035f8de1 100%
+        ) !important;
+        color: #efefef !important;
+        border-color: #024c71 !important;
+      }
+
+      // @Green
+      &.header-green {
+        background: linear-gradient(
+          to right,
+          #027171 15%,
+          #037786e5 50%,
+          #037d8de1 100%
+        ) !important;
+        color: #efefef !important;
+        border-color: #027171 !important;
+      }
+
+      // @Dark
+
+      &.header-dark {
+        background: linear-gradient(
+          to right,
+          #0c1c24 15%,
+          #0d1c24e5 50%,
+          #0f1e25e1 100%
+        ) !important;
+        color: #efefef !important;
+        border-color: #09151b !important;
+      }
+    }
+    .bmd_view-footer {
+      border: 0 !important;
+      border-radius: 0 !important;
+      @include shadow-sm();
+    }
+
+    .bmd_view-toggle {
+      position: absolute;
+      margin-top: 0.1rem !important;
+      font-size: x-large;
+      cursor: pointer;
+      // positioning
+      &.left-toggle {
+        left: 15px !important;
+      }
+      &.right-toggle {
+        right: 15px !important;
+      }
+    }
+    .bmd_view-toggle + h1,
+    .bmd_view-toggle + h2,
+    .bmd_view-toggle + h3,
+    .bmd_view-toggle + h4,
+    .bmd_view-toggle + h5,
+    .bmd_view-toggle + h6 {
+      margin-left: 1.9rem !important;
+    }
+    .bmd_view-body {
+      height: 100%;
+      overflow: hidden;
+      overflow-y: scroll;
+      position: relative;
+      &::-webkit-scrollbar {
+        display: none !important;
+      }
+      width: 100% !important;
+      transition: 0.3s all;
+    }
+
+    &.menu {
+      background: #0303035d !important;
+      .bmd_view-body {
+        position: relative;
+        width: 75% !important;
+        background: #ffffff;
+        @include shadow();
+        @media screen and (min-width: 768px) {
+          width: 35% !important;
+        }
+      }
+    }
+
+    // Displaying and hiding views
+    /**
+            Views directions
+            ----------------
+            1. Top
+            2. Left (default dir)
+            3. Right
+            4. Bottom
+        */
+
+    // Display the views
+    &.show {
+      // top Dir
+      &[data-bmd-direction="Top"] {
+        bottom: 0;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+      }
+      // left Dir
+      &[data-bmd-direction="Left"] {
+        right: 0 !important;
+        top: 0% !important;
+        bottom: 0% !important;
+        left: 0 !important;
+      }
+      // Right
+      &[data-bmd-direction="Right"] {
+        right: 0 !important;
+        top: 0% !important;
+        bottom: 0% !important;
+        left: 0 !important;
+      }
+      // bottom
+      &[data-bmd-direction="Bottom"] {
+        right: 0 !important;
+        top: 0% !important;
+        bottom: 0% !important;
+        left: 0 !important;
+
+        // half views
+        &.half-view {
+          background: #0303035d;
+
+          .bmd_view-body {
+            position: relative;
+            top: calc(100% - 90%) !important;
+            background: #ffffff;
+            border-top-left-radius: 22px;
+            border-top-right-radius: 22px;
+            @include shadow();
+            &.view-quta {
+              top: calc(100% - 50%) !important;
+            }
+          }
+        }
+      }
+    }
+
+    // Hide the views
+    &.hide {
+      // top Dir
+      &[data-bmd-direction="Top"] {
+        bottom: auto !important;
+        top: -250% !important;
+        left: 0 !important;
+        right: 0 !important;
+      }
+      // left Dir
+      &[data-bmd-direction="Left"] {
+        right: auto !important;
+        top: 0% !important;
+        bottom: 0% !important;
+        left: -250% !important;
+      }
+      // Right
+      &[data-bmd-direction="Right"] {
+        right: -250% !important;
+        top: 0% !important;
+        bottom: 0% !important;
+        left: auto !important;
+      }
+      // bottom
+      &[data-bmd-direction="Bottom"] {
+        right: 0 !important;
+        top: auto !important;
+        bottom: -250% !important;
+        left: 0 !important;
+
+        // half views
+        &.half-view {
+          background: #0303035d;
+
+          .bmd_view-body {
+            position: relative;
+            top: calc(100% - 90%) !important;
+            background: #ffffff;
+            border-top-left-radius: 22px;
+            border-top-right-radius: 22px;
+            @include shadow();
+            &.view-quta {
+              top: calc(100% - 50%) !important;
+            }
+          }
+        }
+      }
+    }
+
+    // Default display of views base on directions
+    // top Dir
+    &[data-bmd-direction="Top"] {
+      bottom: auto;
+      top: -250%;
+      left: 0;
+      right: 0;
+    }
+    // left Dir
+    &[data-bmd-direction="Left"] {
+      right: auto;
+      top: 0%;
+      bottom: 0%;
+      left: -250%;
+    }
+    // Right
+    &[data-bmd-direction="Right"] {
+      right: -250%;
+      top: 0%;
+      bottom: 0%;
+      left: auto;
+    }
+    // bottom
+    &[data-bmd-direction="Bottom"] {
+      right: 0;
+      top: auto;
+      bottom: -250%;
+      left: 0;
+
+      // half views
+      &.half-view {
+        background: #0303035d;
+
+        .bmd_view-body {
+          position: relative;
+          top: calc(100% - 90%) !important;
+          background: #ffffff;
+          border-top-left-radius: 22px;
+          border-top-right-radius: 22px;
+          @include shadow();
+          &.view-quta {
+            top: calc(100% - 50%) !important;
+          }
+        }
+      }
+    }
+  }
+}
